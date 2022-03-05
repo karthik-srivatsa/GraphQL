@@ -1,5 +1,7 @@
 using CommanderGQL.Data;
 using CommanderGQL.GraphQL;
+using CommanderGQL.GraphQL.Platforms;
+using CommanderGQL.GraphQL.Commands;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +15,8 @@ builder.Services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddProjections();
+    .AddType<PlatformType>()
+    .AddType<CommandType>();
 
 
 var app = builder.Build();
